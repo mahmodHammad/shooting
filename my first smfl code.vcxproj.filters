@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="States.cpp" />
+    <ClCompile Include="entity.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="states">
+      <UniqueIdentifier>{e2f29b04-31bb-4992-8afc-bf06928f5b0e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="entity.h" />
+  </ItemGroup>
+</Project>
