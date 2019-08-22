@@ -1,4 +1,6 @@
 #pragma once
+#pragma message ("game object is defined")
+
 #include"Projectile.h"
 #include"player.h"
 class game
@@ -16,11 +18,9 @@ private:
 	sf::RenderWindow *window;
 	sf::Event event;
 
-	//hhaa333333333333333333333333
 	player mplayer;
-	//game* mygame;
 
-	//Projectile proj;
+ 
 
 
 };

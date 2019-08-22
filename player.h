@@ -1,4 +1,5 @@
 #pragma once
+#pragma message ("player object is defined")
 #include "entity.h"
 #include"Projectile.h"
 #include<iostream>
@@ -9,7 +10,7 @@ class player
 private:
 	sf::RectangleShape mplayer;
 	std::vector<Projectile* > projs;
-
+	int speed;
 
 protected:
 	sf::RenderWindow *Window;

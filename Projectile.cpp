@@ -11,11 +11,12 @@ void Projectile::init()
 //ssssssssssssssssssssssssssssssssssssssssssss
 void Projectile::update()
 {
-	if (fire) {
-		afterFire(this->unitV);
-	}
-	else
-		beforeFire(this->getGunPos());
+	/*if (fire) {
+		afterFire(this->direction);
+	}*/
+	//else
+		beforeFire(this->gunPosition);
+		//afterFire(this->direction);
 }
 
 void Projectile::beforeFire(sf::Vector2f pos)
@@ -32,7 +33,7 @@ void Projectile::afterFire(sf::Vector2f uv)
 }
 
 
-Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir):window(win),direction(dir)
+Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir ,sf::Vector2f gp):window(win),direction(dir), gunPosition(gp)
 {
 	init();
 }

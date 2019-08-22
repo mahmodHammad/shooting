@@ -4,6 +4,7 @@ void player::init()
 {
 	mplayer.setFillColor(sf::Color::Red);
 	mplayer.setSize(sf::Vector2f(150, 50));
+	speed = 5;
 }
 
 void player::updateGun()
@@ -30,18 +31,18 @@ void player::inputHandler()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 	Window->close();
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-	mplayer.move(-1, 0);
+	mplayer.move(-1*speed, 0);
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-	mplayer.move(1, 0);
+	mplayer.move(1*speed, 0);
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-	mplayer.move(0, 1);
+	mplayer.move(0, 1 *speed);
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-	mplayer.move(0, -1);
+	mplayer.move(0, -1 *speed);
 
 	 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	 {
 		 fire = true;
-		 projs.push_back(new Projectile(this->Window ,unitV));
+		 projs.push_back(new Projectile(this->Window ,unitV ,this->getGunPos()));
 	 }
 }
 
@@ -53,10 +54,6 @@ sf::Vector2f player::getGunPos()
 	temp.y = gun.getPosition().y -unitV.y*gun.getLocalBounds().height;
 	return temp;
 }
-
-
-
-
 
 player::player()
 {
@@ -92,7 +89,7 @@ void player::render()
 	//update projs
 	for (size_t i = 0; i < projs.size(); i++)
 	{
-		projs[i]->update();
+		projs[i]->render();
 	}
 }
 
