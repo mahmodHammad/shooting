@@ -3,7 +3,7 @@
 
 void game::init()
 {	
-	window = new sf::RenderWindow(sf::VideoMode(860,620), "my Duck Attack");
+	window = new sf::RenderWindow(sf::VideoMode(sf::VideoMode::getDesktopMode()), "my Duck Attack");
 	window->setVerticalSyncEnabled(true);
 	window->setMouseCursorVisible(true);
 

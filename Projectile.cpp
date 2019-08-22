@@ -1,55 +1,42 @@
 #include "Projectile.h"
 
-
 void Projectile::init()
 {
-	ball.setFillColor(sf::Color::Magenta);
-	ball.setRadius(10.1);
+	ball.setFillColor(sf::Color::Green);
+	ball.setRadius(7.1);
+	speed = 6;
 }
 
-
-//ssssssssssssssssssssssssssssssssssssssssssss
 void Projectile::update()
 {
-		afterFire(this->gunPosition);
-
-	//if (fire) {
-	//	afterFire(this->direction);
-	//}
-	//else
-	//	beforeFire(this->gunPosition);
-
+		afterFire();
+		colide();
 }
 
-void Projectile::beforeFire(sf::Vector2f pos)
+void Projectile::afterFire()
 {
-	ball.setPosition(pos.x - ball.getRadius(), pos.y - ball.getRadius());
+	if (ball.getPosition().x <= 1 || ball.getPosition().x >= window->getSize().x)
+		direction.x *= -1;
+	if (ball.getPosition().y <= 1 || ball.getPosition().y >= window->getSize().y)
+		direction.y *= -1;
+		ball.move( direction.x *speed, direction.y*speed);
+
 }
 
-
-//ssssssssssssssssssssssssssssssssssssssssssssss
-
-void Projectile::afterFire(sf::Vector2f uv)
+void Projectile::colide()
 {
 
-//	ball.setPosition(uv.x - ball.getRadius(), uv.y - ball.getRadius());
-
-	ball.move(-direction);
 }
 
-
-Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir ,sf::Vector2f gp):window(win),direction(dir), gunPosition(gp)
+Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir ,sf::Vector2f gp):window(win),direction(-dir), gunPosition(gp)
 {
 	init();
 	ball.setPosition(gp.x - ball.getRadius(), gp.y - ball.getRadius());
-
+	//window->draw(ball);
 }
 
 Projectile::~Projectile()
 {
-
-
-
 }
 
 

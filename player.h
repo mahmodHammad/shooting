@@ -24,7 +24,6 @@ protected:
 	bool fire = false;
 
 
-
 public:
 
 	void setRenderWindow(sf::RenderWindow *window);

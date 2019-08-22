@@ -1,6 +1,4 @@
 #pragma once
-#pragma message ("game object is defined")
-
 #include"Projectile.h"
 #include"player.h"
 class game
