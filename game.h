@@ -1,7 +1,6 @@
 #pragma once
-#include"States.h"
-#include"entity.h"
-
+#include"Projectile.h"
+#include"player.h"
 class game
 {
 private:
@@ -9,17 +8,11 @@ private:
 	void init();
 	sf::RenderWindow *window;
 	sf::Event event;
-
-
-	sf::RectangleShape player;
-	sf::RectangleShape gun;
-	sf::Vector2f playerCenter;
-	sf::Vector2f mousePosition;
-	float		 rotation;
-
+	
+	Projectile proj;
+	player mplayer;
 
 public:
-	void updateGun();
 	void updateevents();
 	void run();
 	void update();

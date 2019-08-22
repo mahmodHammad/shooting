@@ -4,7 +4,8 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="States.cpp" />
-    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -13,6 +14,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="entity.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="player.h" />
   </ItemGroup>
 </Project>
