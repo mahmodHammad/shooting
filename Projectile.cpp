@@ -7,31 +7,35 @@ void Projectile::init()
 	ball.setRadius(10.1);
 }
 
-void Projectile::update(sf::Vector2f pos ,sf::Vector2f uv , bool fire)
+
+//ssssssssssssssssssssssssssssssssssssssssssss
+void Projectile::update()
 {
 	if (fire) {
-		afterFire(uv);
+		afterFire(this->unitV);
 	}
 	else
-		beforeFire(pos);
+		beforeFire(this->getGunPos());
 }
 
 void Projectile::beforeFire(sf::Vector2f pos)
 {
-	float xx = pos.x - ball.getRadius() ;
-	ball.setPosition(xx , pos.y - ball.getRadius());
+	ball.setPosition(pos.x - ball.getRadius(), pos.y - ball.getRadius());
 }
+
+
+//ssssssssssssssssssssssssssssssssssssssssssssss
 
 void Projectile::afterFire(sf::Vector2f uv)
 {
-	ball.move(-uv);
+	ball.move(-direction);
 }
 
-Projectile::Projectile()
+
+Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir):window(win),direction(dir)
 {
 	init();
 }
-
 
 Projectile::~Projectile()
 {
@@ -46,7 +50,3 @@ void Projectile::render()
 	window->draw(ball);
 }
 
-void Projectile::setupWindow(sf::RenderWindow * win)
-{
-	window = win;
-}

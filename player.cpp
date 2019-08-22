@@ -41,9 +41,7 @@ void player::inputHandler()
 	 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	 {
 		 fire = true;
-		 sf::Vector2f constUV;
-		 //if (!fire)
-		 constUV = unitV;
+		 projs.push_back(new Projectile(this->Window ,unitV));
 	 }
 }
 
@@ -56,19 +54,9 @@ sf::Vector2f player::getGunPos()
 	return temp;
 }
 
-sf::Vector2f player::GetUnitV()
-{
-	sf::Vector2f constUV;
-	//if (!fire)
-		constUV = unitV;
-	return constUV;
-}
 
 
-bool player::getFire()
-{
-	return fire;
-}
+
 
 player::player()
 {
@@ -89,21 +77,28 @@ void player::update()
 {
 	inputHandler();
 	mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Window));
-
-
 	updateGun();
+	//update projs
+	for (size_t i = 0; i < projs.size(); i++)
+	{
+		projs[i]->update();
+	}
 }
 
 void player::render()
 {
 	Window->draw(mplayer);
 	Window->draw(gun);
+	//update projs
+	for (size_t i = 0; i < projs.size(); i++)
+	{
+		projs[i]->update();
+	}
 }
 
 void player::setup()
 {
 	mplayer.setPosition(Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y);
-	//	mplayer.setOrigin(mplayer.getSize().x / 2, mplayer.getSize().y / 2);  FIX IT LATER
 	gun.setFillColor(sf::Color::Yellow);
 	gun.setSize(sf::Vector2f(5, 70));
 	gun.setOrigin(gun.getSize().x / 2, gun.getSize().y);

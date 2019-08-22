@@ -1,18 +1,23 @@
 #pragma once
 #include<iostream>
 #include<SFML\Graphics.hpp>
-class Projectile
+#include"player.h"
+class Projectile :public player
 {
 	sf::RenderWindow * window;
 	sf::CircleShape ball;
 	void beforeFire(sf::Vector2f pos);
+	sf::Vector2f direction;
 public:
-	void setupWindow(sf::RenderWindow* win);
-	Projectile();
+	Projectile(sf::RenderWindow* win , sf::Vector2f dir);
 	~Projectile();
 	void init();
-	void update(sf::Vector2f ,sf::Vector2f , bool);
+
+
+	void update();
 	void afterFire(sf::Vector2f);
+	
+	
 	void render();
 };
 

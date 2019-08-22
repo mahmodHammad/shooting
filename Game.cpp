@@ -5,14 +5,11 @@ void game::init()
 {	
 	window = new sf::RenderWindow(sf::VideoMode(860,620), "my Duck Attack");
 	window->setVerticalSyncEnabled(true);
-	window->setMouseCursorVisible(false);
+	window->setMouseCursorVisible(true);
 
-	proj.setupWindow(window);
 	mplayer.setRenderWindow(window);
 	mplayer.setup();
 }
-
-
 
 void game::updateevents()
 {
@@ -21,8 +18,6 @@ void game::updateevents()
 		if (event.type == sf::Event::Closed)
 			window->close();
 	}
-
-	
 }
 
 void game::run()
@@ -35,23 +30,6 @@ void game::run()
 	}
 }
 
-void game::update()
-{
-	updateevents();
-	mplayer.update();
-	proj.update(mplayer.getGunPos() ,mplayer.GetUnitV() ,mplayer.getFire());
-}
-
-void game::render()
-{
-	window->clear();
-
-	mplayer.render();
-	proj.render();
-
-	window->display();
-}
-
 game::game()
 {
 	mplayer.setRenderWindow(window);
@@ -62,5 +40,26 @@ game::game()
 game::~game()
 {
 	delete window;
+}
+
+
+//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+void game::update()
+{
+	updateevents();
+	mplayer.update();
+
+	
+}
+
+void game::render()
+{
+	window->clear();
+
+	mplayer.render();
+	
+
+	window->display();
 }
 

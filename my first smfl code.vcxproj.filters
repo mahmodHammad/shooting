@@ -6,6 +6,7 @@
     <ClCompile Include="States.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="entity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -16,5 +17,6 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="entity.h" />
   </ItemGroup>
 </Project>
