@@ -3,8 +3,8 @@
 void player::init()
 {
 	mplayer.setFillColor(sf::Color::Red);
-	mplayer.setSize(sf::Vector2f(150, 50));
-	speed = 5;
+	mplayer.setSize(sf::Vector2f(30, 40));
+	speed = 4;
 
 }
 
@@ -53,6 +53,9 @@ void player::inputHandler()
 			projs.push_back(new Projectile(this->Window ,unitV ,this->getGunPos()));
 		reload = false;
 	 }
+	 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+		 mplayer.setFillColor(sf::Color::Red);
+	 }
 }
 
 sf::Vector2f player::getGunPos()
@@ -67,6 +70,22 @@ sf::Vector2f player::getGunPos()
 player::player()
 {
 	init();
+}
+
+void player::colide()
+{
+	for (size_t i = 0; i < projs.size(); i++)
+	{
+		if  (projs[i]->getBallCenter().x > mplayer.getPosition().x 
+		  && projs[i]->getBallCenter().x < mplayer.getPosition().x + mplayer.getSize().x
+		  && projs[i]->getBallCenter().y >  mplayer.getPosition().y
+		  && projs[i]->getBallCenter().y <  mplayer.getPosition().y + mplayer.getSize().y
+			)
+		{ 
+			
+			this->mplayer.setFillColor(sf::Color::Blue);
+		}
+	}
 }
 
 void player::setRenderWindow(sf::RenderWindow * window)
@@ -85,6 +104,7 @@ void player::update()
 	mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Window));
 	updateGun();
 	getGunPos();
+	colide();
 	 
 	//update projs
 	for (size_t i = 0; i < projs.size(); i++)

@@ -3,14 +3,18 @@
 void Projectile::init()
 {
 	ball.setFillColor(sf::Color::Green);
-	ball.setRadius(7.1);
-	speed = 6;
+	ball.setRadius(3.1);
+	speed = 2;
+}
+
+sf::Vector2f Projectile::getBallCenter()
+{
+	return ball.getPosition();
 }
 
 void Projectile::update()
 {
 		afterFire();
-		colide();
 }
 
 void Projectile::afterFire()
@@ -20,25 +24,17 @@ void Projectile::afterFire()
 	if (ball.getPosition().y <= 1 || ball.getPosition().y >= window->getSize().y)
 		direction.y *= -1;
 		ball.move( direction.x *speed, direction.y*speed);
-
-}
-
-void Projectile::colide()
-{
-
 }
 
 Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir ,sf::Vector2f gp):window(win),direction(-dir), gunPosition(gp)
 {
 	init();
 	ball.setPosition(gp.x - ball.getRadius(), gp.y - ball.getRadius());
-	//window->draw(ball);
 }
 
 Projectile::~Projectile()
 {
 }
-
 
 void Projectile::render()
 {

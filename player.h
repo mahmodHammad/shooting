@@ -16,12 +16,14 @@ private:
 protected:
 	sf::RenderWindow *Window;
 	sf::RectangleShape gun;
-	float		 rotation;
+	 float		 rotation;
 	void init();
 	sf::Vector2f playerCenter;
 	sf::Vector2f mousePosition;
 	sf::Vector2f unitV;
 	bool fire = false;
+
+	void colide();
 
 
 public:
