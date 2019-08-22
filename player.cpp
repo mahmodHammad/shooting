@@ -5,6 +5,7 @@ void player::init()
 	mplayer.setFillColor(sf::Color::Red);
 	mplayer.setSize(sf::Vector2f(150, 50));
 	speed = 5;
+
 }
 
 void player::updateGun()
@@ -39,10 +40,14 @@ void player::inputHandler()
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	mplayer.move(0, -1 *speed);
 
+	 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		 reload = true;
 	 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	 {
 		 fire = true;
-		 projs.push_back(new Projectile(this->Window ,unitV ,this->getGunPos()));
+		if(reload)
+			projs.push_back(new Projectile(this->Window ,unitV ,this->getGunPos()));
+		reload = false;
 	 }
 }
 
@@ -75,6 +80,7 @@ void player::update()
 	inputHandler();
 	mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Window));
 	updateGun();
+	getGunPos();
 	//update projs
 	for (size_t i = 0; i < projs.size(); i++)
 	{
@@ -99,5 +105,6 @@ void player::setup()
 	gun.setFillColor(sf::Color::Yellow);
 	gun.setSize(sf::Vector2f(5, 70));
 	gun.setOrigin(gun.getSize().x / 2, gun.getSize().y);
+	projs.push_back(new Projectile(this->Window, unitV, this->getGunPos()));
 
 }

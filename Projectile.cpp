@@ -11,12 +11,14 @@ void Projectile::init()
 //ssssssssssssssssssssssssssssssssssssssssssss
 void Projectile::update()
 {
-	/*if (fire) {
-		afterFire(this->direction);
-	}*/
+		afterFire(this->gunPosition);
+
+	//if (fire) {
+	//	afterFire(this->direction);
+	//}
 	//else
-		beforeFire(this->gunPosition);
-		//afterFire(this->direction);
+	//	beforeFire(this->gunPosition);
+
 }
 
 void Projectile::beforeFire(sf::Vector2f pos)
@@ -29,6 +31,9 @@ void Projectile::beforeFire(sf::Vector2f pos)
 
 void Projectile::afterFire(sf::Vector2f uv)
 {
+
+//	ball.setPosition(uv.x - ball.getRadius(), uv.y - ball.getRadius());
+
 	ball.move(-direction);
 }
 
@@ -36,6 +41,8 @@ void Projectile::afterFire(sf::Vector2f uv)
 Projectile::Projectile(sf::RenderWindow* win ,sf::Vector2f dir ,sf::Vector2f gp):window(win),direction(dir), gunPosition(gp)
 {
 	init();
+	ball.setPosition(gp.x - ball.getRadius(), gp.y - ball.getRadius());
+
 }
 
 Projectile::~Projectile()

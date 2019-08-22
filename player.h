@@ -10,7 +10,8 @@ class player
 private:
 	sf::RectangleShape mplayer;
 	std::vector<Projectile* > projs;
-	int speed;
+	int speed; 
+	bool reload;
 
 protected:
 	sf::RenderWindow *Window;

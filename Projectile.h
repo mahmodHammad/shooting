@@ -7,7 +7,7 @@
 class Projectile 
 {
 //inported variables----------------
-//	bool fire;  added later
+//	bool fire; 
 	sf::Vector2f direction; //will be const
 	sf::Vector2f gunPosition; //will be updated
 //----------------------------------
@@ -17,7 +17,7 @@ class Projectile
 	void beforeFire(sf::Vector2f pos);
  
 public:
-	Projectile(sf::RenderWindow* win , sf::Vector2f dir , sf::Vector2f);
+	Projectile(sf::RenderWindow* win , sf::Vector2f dir , sf::Vector2f gp);
 	~Projectile();
 	void init();
 
