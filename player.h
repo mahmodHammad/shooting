@@ -11,6 +11,9 @@ private:
 	Gun otherGun2;
 	Gun otherGun3;
 	Gun otherGun4;
+	Gun otherGun5;
+	Gun otherGun6;
+	Gun otherGun7;
 
 	sf::Vector2f playerSize;
 	float dy;
@@ -38,10 +41,8 @@ protected:
 	sf::Vector2f unitV;
 	bool fire = false;
 
-
-
 public:
-
+	void setinitpos(sf::Vector2f pos);
 	void setRenderWindow(sf::RenderWindow *window);
 	void inputHandler();
 	sf::Vector2f cuv;
@@ -51,4 +52,13 @@ public:
 	void render();
 	void setup();
 };
+
+
+
+
+
+
+
+
+
 

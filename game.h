@@ -11,6 +11,14 @@ private:
 	sf::RenderWindow *window;
 	sf::Event event;
 	player mplayer;
+	player oplayer;
+
+	player aplayer;
+	player splayer;
+
+	player fplayer;
+	player gplayer;
+	
 
 public:
 	game();

@@ -21,6 +21,7 @@ private:
 	//void initvar();
 	void initGun();
 	void shiftPos();
+	void updateGun();
 public:
 	Gun();
 	~Gun();
@@ -30,7 +31,6 @@ public:
 		sf::Vector2f size = sf::Vector2f(5, 110));
 
 	void update(sf::Vector2f positon, float rotaion, sf::Vector2f unitvect);
-	void updateGun();
 	void render();
 	sf::Vector2f getGunPos();
 

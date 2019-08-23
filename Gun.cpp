@@ -15,7 +15,6 @@ void Gun::setUpGun(sf::RenderWindow * window, int positionleft, int positiontop,
 	//i may need inital position
 	origin = sf::Vector2f(size.x / 2, size.y);
 	myGun.setOrigin(origin);
-	
 
 	initGun();
 }
@@ -38,7 +37,6 @@ void Gun::shiftPos()
 		shiftposition.y -= playersize.y / 2;
 	else if (indTop == 2)
 		shiftposition.y += playersize.y / 2;
-
 }
 
 Gun::Gun()

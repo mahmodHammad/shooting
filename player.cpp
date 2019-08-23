@@ -66,9 +66,9 @@ void player::hit()
 void player::reset()
 {
 	hits = 0;
-	projs.clear();
 	for (int i = 0; i <projs.size(); i++)
 		delete projs[i];
+	projs.clear();
 
 	this->mplayer.setFillColor(defaultCOL);
 	mplayer.setPosition(initialPostion);
@@ -125,6 +125,16 @@ void player::colide()
 	}
 }
 
+
+
+
+void player::setinitpos(sf::Vector2f pos)
+{
+	initialPostion = pos;
+}
+
+
+
 void player::setRenderWindow(sf::RenderWindow* window) 
 {
 	Window = window;
@@ -135,6 +145,9 @@ void player::setRenderWindow(sf::RenderWindow* window)
 	otherGun2.setUpGun(window, 1, 1, playerSize);
 	otherGun3.setUpGun(window, 1, 2, playerSize);
 	otherGun4.setUpGun(window, 1, 0, playerSize);
+	otherGun5.setUpGun(window, 1, 0, playerSize);
+	otherGun6.setUpGun(window, 1, 0, playerSize);
+	otherGun7.setUpGun(window, 1, 0, playerSize);
 
 }
 
@@ -157,6 +170,9 @@ void player::update()
 	otherGun2.update(playerCenter, rotation, this->unitV);
 	otherGun3.update(playerCenter, rotation, this->unitV);
 	otherGun4.update(playerCenter, rotation, this->unitV);
+	otherGun5.update(playerCenter, rotation, this->unitV);
+	otherGun6.update(playerCenter, rotation, this->unitV);
+	otherGun7.update(playerCenter, rotation, this->unitV);
 
 	colide();
 	 
@@ -176,6 +192,9 @@ void player::render()
 	otherGun2.render();
 	otherGun3.render();
 	otherGun4.render();
+	otherGun5.render();
+	otherGun6.render();
+	otherGun7.render();
 
 	
 	for (size_t i = 0; i < projs.size(); i++)
@@ -186,6 +205,6 @@ void player::render()
 
 void player::setup()
 {
-	initialPostion = sf::Vector2f( Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y -30);
+//	initialPostion = sf::Vector2f(Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y - 30);
 	mplayer.setPosition(initialPostion);
 }
