@@ -1,14 +1,14 @@
 #pragma once
-#pragma message ("player object is defined")
-#include "entity.h"
-#include"Projectile.h"
-#include<iostream>
-#include<SFML\Graphics.hpp>
+#include"Gun.h"
 
 class player 	
 {
 private:
 	sf::RectangleShape mplayer;
+	Gun mygun;
+
+	float dy;
+	float dx;
 	std::vector<Projectile* > projs;
 	sf::Color defaultCOL;
 	int speed; 
@@ -18,6 +18,8 @@ private:
 	void reset();
 	sf::Vector2f initialPostion;
 	void shoot();
+	void setUnitVector();
+	void updateAngle();
 
 protected:
 	void colide();
@@ -35,9 +37,7 @@ protected:
 public:
 
 	void setRenderWindow(sf::RenderWindow *window);
-	void updateGun();
 	void inputHandler();
-	sf::Vector2f getGunPos();
 	sf::Vector2f cuv;
 	player();
 	~player();
