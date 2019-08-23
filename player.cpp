@@ -4,11 +4,11 @@
 void player::init()
 {
 	defaultCOL = sf::Color(155, 0, 0, 255);
-	mplayer.setFillColor(defaultCOL);
-	mplayer.setSize(sf::Vector2f(30, 40));
-	
-	//mygun.setUpGun(Window);
+	playerSize = sf::Vector2f(50, 70);
 	speed = 4;
+
+	mplayer.setFillColor(defaultCOL);
+	mplayer.setSize(playerSize);
 }
 
 
@@ -67,12 +67,23 @@ void player::reset()
 {
 	hits = 0;
 	projs.clear();
+	for (int i = 0; i <projs.size(); i++)
+		delete projs[i];
+
 	this->mplayer.setFillColor(defaultCOL);
 	mplayer.setPosition(initialPostion);
 }
 void player::shoot()
 {
+
 	projs.push_back(new Projectile(this->Window, unitV, mygun.getGunPos()));
+
+	projs.push_back(new Projectile(this->Window, unitV, otherGun.getGunPos()));
+	projs.push_back(new Projectile(this->Window, unitV, otherGun1.getGunPos()));
+	projs.push_back(new Projectile(this->Window, unitV, otherGun2.getGunPos()));
+	projs.push_back(new Projectile(this->Window, unitV, otherGun3.getGunPos()));
+	projs.push_back(new Projectile(this->Window, unitV, otherGun4.getGunPos()));
+
 
 }
 
@@ -105,6 +116,7 @@ void player::colide()
 		  && projs[i]->getBallCenter().y >  mplayer.getPosition().y
 		  && projs[i]->getBallCenter().y <  mplayer.getPosition().y + mplayer.getSize().y )
 		{ 
+			delete projs[i];
 			projs.erase(projs.begin()+i);
 			hits++;
 			hit();
@@ -113,10 +125,17 @@ void player::colide()
 	}
 }
 
-void player::setRenderWindow(sf::RenderWindow * window)
+void player::setRenderWindow(sf::RenderWindow* window) 
 {
 	Window = window;
-	mygun.setUpGun(window);
+	//<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>
+	mygun.setUpGun(window ,0 ,0,playerSize);
+	otherGun.setUpGun(window, 0, 1, playerSize);
+	otherGun1.setUpGun(window, 0, 2, playerSize);
+	otherGun2.setUpGun(window, 1, 1, playerSize);
+	otherGun3.setUpGun(window, 1, 2, playerSize);
+	otherGun4.setUpGun(window, 1, 0, playerSize);
+
 }
 
 
@@ -131,7 +150,14 @@ void player::update()
 	setUnitVector();
 
 	updateAngle();
+
 	mygun.update(playerCenter, rotation, this->unitV);
+	otherGun.update(playerCenter, rotation, this->unitV);
+	otherGun1.update(playerCenter, rotation, this->unitV);
+	otherGun2.update(playerCenter, rotation, this->unitV);
+	otherGun3.update(playerCenter, rotation, this->unitV);
+	otherGun4.update(playerCenter, rotation, this->unitV);
+
 	colide();
 	 
 	//update projs
@@ -145,6 +171,12 @@ void player::render()
 {
 	Window->draw(mplayer);
 	mygun.render();
+	otherGun.render();
+	otherGun1.render();
+	otherGun2.render();
+	otherGun3.render();
+	otherGun4.render();
+
 	
 	for (size_t i = 0; i < projs.size(); i++)
 	{

@@ -2,10 +2,12 @@
 void Projectile::init()
 {
 	ball.setFillColor(sf::Color::Green);
-	ball.setRadius(3.1);
-	speed = rand() % 2 + 1;
-//	direction.x +=( rand() %2) /5 ;
-	//direction.y += (rand() %2) /5 ;
+	ball.setRadius(3);
+//	speed = 2;
+	speed = (rand() % 2 + 1)/5.1;
+	//std::cout << speed << std::end;
+//	direction.x += (rand() %10)/50.2 - (rand() % 10) / 50.2;
+//	direction.y +=(rand() %10)/50.2  -.2 ;
 }
 
 sf::Vector2f Projectile::getBallCenter()

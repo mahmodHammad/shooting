@@ -6,12 +6,18 @@ class player
 private:
 	sf::RectangleShape mplayer;
 	Gun mygun;
+	Gun otherGun;
+	Gun otherGun1;
+	Gun otherGun2;
+	Gun otherGun3;
+	Gun otherGun4;
 
+	sf::Vector2f playerSize;
 	float dy;
 	float dx;
 	std::vector<Projectile* > projs;
 	sf::Color defaultCOL;
-	int speed; 
+	float speed; 
 	bool reload;
 	int hits=0 ;
 	void hit();
