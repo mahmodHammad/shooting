@@ -10,10 +10,17 @@ class player
 private:
 	sf::RectangleShape mplayer;
 	std::vector<Projectile* > projs;
+	sf::Color defaultCOL;
 	int speed; 
 	bool reload;
+	int hits=0 ;
+	void hit();
+	void reset();
+	sf::Vector2f initialPostion;
+	void shoot();
 
 protected:
+	void colide();
 	sf::RenderWindow *Window;
 	sf::RectangleShape gun;
 	 float		 rotation;
@@ -23,7 +30,6 @@ protected:
 	sf::Vector2f unitV;
 	bool fire = false;
 
-	void colide();
 
 
 public:

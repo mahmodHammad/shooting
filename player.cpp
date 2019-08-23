@@ -1,11 +1,13 @@
 #include "player.h"
 
+
 void player::init()
 {
-	mplayer.setFillColor(sf::Color::Red);
+	defaultCOL = sf::Color(155, 0, 0, 255);
+	mplayer.setFillColor(defaultCOL);
 	mplayer.setSize(sf::Vector2f(30, 40));
 	speed = 4;
-
+	
 }
 
 void player::updateGun()
@@ -43,18 +45,17 @@ void player::inputHandler()
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 		 if (mplayer.getPosition().y >0)
 			mplayer.move(0, -1 *speed);
-
+	 
 	 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 		 reload = true;
 	 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	 {
-		 fire = true;
-		if(reload)
-			projs.push_back(new Projectile(this->Window ,unitV ,this->getGunPos()));
+		 if (reload)
+			 shoot();
 		reload = false;
 	 }
 	 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-		 mplayer.setFillColor(sf::Color::Red);
+		 reset();
 	 }
 }
 
@@ -72,6 +73,33 @@ player::player()
 	init();
 }
 
+void player::hit()
+{
+	mplayer.setScale(sf::Vector2f(.4, .4));
+	if (hits == 1)
+		this->mplayer.setFillColor(sf::Color(72, 205,22, 252));
+	else if (hits == 2)
+		this->mplayer.setFillColor(sf::Color(77, 255, 77, 252));
+
+	else if (hits == 3)
+		this->mplayer.setFillColor(sf::Color(254, 254, 254, 255));
+
+	else if (hits > 3) {
+		reset();
+	}
+}
+void player::reset()
+{
+	hits = 0;
+	projs.clear();
+	this->mplayer.setFillColor(defaultCOL);
+	mplayer.setPosition(initialPostion);
+}
+void player::shoot()
+{
+	projs.push_back(new Projectile(this->Window, unitV, this->getGunPos()));
+
+}
 void player::colide()
 {
 	for (size_t i = 0; i < projs.size(); i++)
@@ -79,14 +107,16 @@ void player::colide()
 		if  (projs[i]->getBallCenter().x > mplayer.getPosition().x 
 		  && projs[i]->getBallCenter().x < mplayer.getPosition().x + mplayer.getSize().x
 		  && projs[i]->getBallCenter().y >  mplayer.getPosition().y
-		  && projs[i]->getBallCenter().y <  mplayer.getPosition().y + mplayer.getSize().y
-			)
+		  && projs[i]->getBallCenter().y <  mplayer.getPosition().y + mplayer.getSize().y )
 		{ 
-			
-			this->mplayer.setFillColor(sf::Color::Blue);
+			projs.erase(projs.begin()+i);
+			hits++;
+			hit();
 		}
+				
 	}
 }
+
 
 void player::setRenderWindow(sf::RenderWindow * window)
 {
@@ -126,7 +156,8 @@ void player::render()
 
 void player::setup()
 {
-	mplayer.setPosition(Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y);
+	initialPostion = sf::Vector2f( Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y -30);
+	mplayer.setPosition(initialPostion);
 	gun.setFillColor(sf::Color::Yellow);
 	gun.setSize(sf::Vector2f(5, 70));
 	gun.setOrigin(gun.getSize().x / 2, gun.getSize().y);

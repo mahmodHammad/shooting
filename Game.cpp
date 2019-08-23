@@ -6,12 +6,12 @@ void game::init()
 	window = new sf::RenderWindow(sf::VideoMode(sf::VideoMode::getDesktopMode()), "my Duck Attack");
 	window->setVerticalSyncEnabled(true);
 	window->setMouseCursorVisible(true);
-
+	window->setKeyRepeatEnabled(false);
 	mplayer.setRenderWindow(window);
 	mplayer.setup();
 }
 
-void game::updateevents()
+void game::updateSFMLevents()
 {
 	while (window->pollEvent(event))
 	{
@@ -22,7 +22,6 @@ void game::updateevents()
 
 void game::run()
 {
-	sf::err().rdbuf(NULL);
 	while (window->isOpen())
 	{
 		update();
@@ -43,22 +42,18 @@ game::~game()
 }
 
 
-
 void game::update()
 {
-	updateevents();
+	updateSFMLevents();
 	mplayer.update();
-
-	
+	//entity.update();
 }
 
 void game::render()
 {
 	window->clear();
-
 	mplayer.render();
-	
-
+//	entity.render();
 	window->display();
 }
 

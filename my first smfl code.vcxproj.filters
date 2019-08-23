@@ -4,19 +4,36 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="States.cpp" />
-    <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="player.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Gun.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
       <UniqueIdentifier>{e2f29b04-31bb-4992-8afc-bf06928f5b0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="entity">
+      <UniqueIdentifier>{b14df95c-ee2b-4f00-a478-d7f23fa18399}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="Projectile.h" />
-    <ClInclude Include="player.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="Gun.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

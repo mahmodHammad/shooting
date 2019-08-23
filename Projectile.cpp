@@ -1,10 +1,11 @@
 #include "Projectile.h"
-
 void Projectile::init()
 {
 	ball.setFillColor(sf::Color::Green);
 	ball.setRadius(3.1);
-	speed = 2;
+	speed = rand() % 2 + 1;
+//	direction.x +=( rand() %2) /5 ;
+	//direction.y += (rand() %2) /5 ;
 }
 
 sf::Vector2f Projectile::getBallCenter()
