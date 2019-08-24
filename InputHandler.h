@@ -3,12 +3,12 @@
 #include<map>
 class InputHandler
 {
+	std::map<int, bool> inputs;
+public:
 	enum keys
 	{
 		top,left,right,down,esc,enter,lclick,rclick
 	};
-	std::map<int, bool> inputs;
-public:
 	void initializer();
 	void updateinput();
 	InputHandler();

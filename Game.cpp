@@ -7,8 +7,7 @@ void game::init()
 	window->setFramerateLimit(60);
 	window->setMouseCursorVisible(true);
 //	window->setKeyRepeatEnabled(false);
-	mplayer.setinitpos(sf::Vector2f(800, 90));
-	mplayer.setRenderWindow(window);
+	entity.setRenderWindow(window);
 
 }
 
@@ -46,14 +45,14 @@ void game::update()
 {
 		
 	updateSFMLevents();
-	mplayer.update();
+	entity.update();
 
 }
 
 void game::render()
 {
 	window->clear();
-	mplayer.render();
+	entity.render();
 
 	window->display();
 }

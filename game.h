@@ -1,5 +1,6 @@
 #pragma once
-#include"player.h"
+#include"Entity.h"
+#include"SFML\Graphics.hpp"
 
 class game
 {
@@ -7,8 +8,7 @@ private:
 	void init();
 	sf::RenderWindow *window;
 	sf::Event event;
-	player mplayer;
-	
+	Entity entity;
 
 public:
 	game();

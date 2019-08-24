@@ -3,17 +3,19 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="entity.cpp" />
     <ClCompile Include="Gun.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
-    <ClCompile Include="player.cpp">
       <Filter>entity</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
       <Filter>entity</Filter>
     </ClCompile>
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="states">
@@ -25,16 +27,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
-    <ClInclude Include="entity.h" />
     <ClInclude Include="Gun.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
       <Filter>entity</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>entity</Filter>
     </ClInclude>
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Entity.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
