@@ -1,56 +1,55 @@
 #pragma once
 #include"Gun.h"
+#include"InputHandler.h"
 
 class player 	
 {
 private:
+	enum keys { top, left, right, down, esc, enter, lclick, rclick };
+	InputHandler keyhandler;
+
+	sf::RenderWindow *Window;
+
 	sf::RectangleShape mplayer;
+	sf::Vector2f playerSize;
+	float speed; 
+	sf::Color defaultCOL;
+	sf::Vector2f initialPostion;
+	sf::Vector2f playerCenter;
+	sf::Vector2f mousePosition;
+	sf::Vector2f unitV;
+	
+	float dy;
+	float dx;
+	float rotation;
 	Gun mygun;
 	Gun otherGun;
 	Gun otherGun1;
 	Gun otherGun2;
 	Gun otherGun3;
 	Gun otherGun4;
-	Gun otherGun5;
-	Gun otherGun6;
-	Gun otherGun7;
 
-	sf::Vector2f playerSize;
-	float dy;
-	float dx;
 	std::vector<Projectile* > projs;
-	sf::Color defaultCOL;
-	float speed; 
 	bool reload;
 	int hits=0 ;
+	
 	void hit();
-	void reset();
-	sf::Vector2f initialPostion;
 	void shoot();
+	void reset();
 	void setUnitVector();
 	void updateAngle();
-
-protected:
 	void colide();
-	sf::RenderWindow *Window;
-	sf::RectangleShape gun;
-	 float		 rotation;
 	void init();
-	sf::Vector2f playerCenter;
-	sf::Vector2f mousePosition;
-	sf::Vector2f unitV;
-	bool fire = false;
+	
 
 public:
 	void setinitpos(sf::Vector2f pos);
 	void setRenderWindow(sf::RenderWindow *window);
 	void inputHandler();
-	sf::Vector2f cuv;
 	player();
 	~player();
 	void update();
 	void render();
-	void setup();
 };
 
 

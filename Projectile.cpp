@@ -4,10 +4,10 @@ void Projectile::init()
 	ball.setFillColor(sf::Color::Green);
 	ball.setRadius(6);
 	//speed = 2;
-	speed = (rand() % 5 + 1)/5.1;
+	speed = (rand() % 9 + 10)/3.1;
 	direction.x += (rand() %10)/50.2 - (rand() % 10) / 50.2;
 	direction.y +=(rand() %10)/50.2  -.2 ;
-}
+} 
 
 sf::Vector2f Projectile::getBallCenter()
 {
@@ -16,7 +16,7 @@ sf::Vector2f Projectile::getBallCenter()
 
 void Projectile::update()
 {
-		afterFire();
+	afterFire();
 }
 
 void Projectile::afterFire()

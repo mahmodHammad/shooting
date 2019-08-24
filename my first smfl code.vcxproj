@@ -156,15 +156,16 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="States.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Projectile.h" />
   </ItemGroup>

@@ -6,51 +6,49 @@ void player::init()
 	defaultCOL = sf::Color(155, 0, 0, 255);
 	playerSize = sf::Vector2f(50, 70);
 	speed = 4;
-
 	mplayer.setFillColor(defaultCOL);
 	mplayer.setSize(playerSize);
 }
 
-
-
 void player::inputHandler()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	keyhandler.updateinput();
+	if (keyhandler.getkey(esc))
 	Window->close();
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+	 if (keyhandler.getkey(left))
 		if(mplayer.getPosition().x >0)
 			 mplayer.move(-1*speed, 0);
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	 if (keyhandler.getkey(right))
 		 if (mplayer.getPosition().x +  mplayer.getSize().x < Window->getSize().x)
 			mplayer.move(1*speed, 0);
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+	 if (keyhandler.getkey(down))
 		 if (mplayer.getPosition().y + mplayer.getSize().y < Window->getSize().y)
 			mplayer.move(0, 1 *speed);
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+	 if (keyhandler.getkey(top))
 		 if (mplayer.getPosition().y >0)
 			mplayer.move(0, -1 *speed);
 	 
-	 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+	 if (keyhandler.getkey(rclick))
 		 reload = true;
-	 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	 if (keyhandler.getkey(lclick))
 	 {
-		 if (reload)
+		// if (reload)
 			 shoot();
-		reload = false;
+		//reload = false;
 	 }
-	 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+	 if(keyhandler.getkey(enter)){
 		 reset();
 	 }
-}
+	 keyhandler.initializer();
 
+}
 
 player::player()
 {
 	init();
 }
 void player::hit()
-{
-	
+{	
 	if (hits == 1)
 		this->mplayer.setFillColor(sf::Color(72, 205,22, 252));
 	else if (hits == 2)
@@ -61,6 +59,7 @@ void player::hit()
 
 	else if (hits > 3) {
 		reset();
+		hits = 0;
 	}
 }
 void player::reset()
@@ -75,18 +74,13 @@ void player::reset()
 }
 void player::shoot()
 {
-
 	projs.push_back(new Projectile(this->Window, unitV, mygun.getGunPos()));
-
 	projs.push_back(new Projectile(this->Window, unitV, otherGun.getGunPos()));
 	projs.push_back(new Projectile(this->Window, unitV, otherGun1.getGunPos()));
 	projs.push_back(new Projectile(this->Window, unitV, otherGun2.getGunPos()));
 	projs.push_back(new Projectile(this->Window, unitV, otherGun3.getGunPos()));
 	projs.push_back(new Projectile(this->Window, unitV, otherGun4.getGunPos()));
-
-
 }
-
 
 void player::setUnitVector()
 {
@@ -105,7 +99,6 @@ void player::updateAngle()
 	else
 		rotation = angle + 180;
 }
-
 
 void player::colide()
 {
@@ -126,31 +119,23 @@ void player::colide()
 }
 
 
-
-
 void player::setinitpos(sf::Vector2f pos)
 {
 	initialPostion = pos;
 }
 
-
-
 void player::setRenderWindow(sf::RenderWindow* window) 
 {
 	Window = window;
-	//<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>
+	mplayer.setPosition(initialPostion);
+
 	mygun.setUpGun(window ,0 ,0,playerSize);
 	otherGun.setUpGun(window, 0, 1, playerSize);
 	otherGun1.setUpGun(window, 0, 2, playerSize);
-	otherGun2.setUpGun(window, 1, 1, playerSize);
-	otherGun3.setUpGun(window, 1, 2, playerSize);
-	otherGun4.setUpGun(window, 1, 0, playerSize);
-	otherGun5.setUpGun(window, 1, 0, playerSize);
-	otherGun6.setUpGun(window, 1, 0, playerSize);
-	otherGun7.setUpGun(window, 1, 0, playerSize);
-
+	otherGun2.setUpGun(window, 2, 0, playerSize);
+	otherGun3.setUpGun(window, 2, 1, playerSize);
+	otherGun4.setUpGun(window, 2, 2, playerSize);
 }
-
 
 player::~player()
 {
@@ -161,7 +146,6 @@ void player::update()
 	inputHandler();
 	mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Window));
 	setUnitVector();
-
 	updateAngle();
 
 	mygun.update(playerCenter, rotation, this->unitV);
@@ -170,9 +154,6 @@ void player::update()
 	otherGun2.update(playerCenter, rotation, this->unitV);
 	otherGun3.update(playerCenter, rotation, this->unitV);
 	otherGun4.update(playerCenter, rotation, this->unitV);
-	otherGun5.update(playerCenter, rotation, this->unitV);
-	otherGun6.update(playerCenter, rotation, this->unitV);
-	otherGun7.update(playerCenter, rotation, this->unitV);
 
 	colide();
 	 
@@ -192,10 +173,7 @@ void player::render()
 	otherGun2.render();
 	otherGun3.render();
 	otherGun4.render();
-	otherGun5.render();
-	otherGun6.render();
-	otherGun7.render();
-
+	
 	
 	for (size_t i = 0; i < projs.size(); i++)
 	{
@@ -203,8 +181,7 @@ void player::render()
 	}
 }
 
-void player::setup()
-{
-//	initialPostion = sf::Vector2f(Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y - 30);
-	mplayer.setPosition(initialPostion);
-}
+//void player::setup()
+//{
+////	initialPostion = sf::Vector2f(Window->getSize().x / 2 - mplayer.getSize().x / 2, Window->getSize().y - mplayer.getSize().y - 30);
+//}
