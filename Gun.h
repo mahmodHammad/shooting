@@ -24,11 +24,11 @@ private:
 	void updateGun();
 public:
 	Gun();
-	~Gun();
+	//~Gun();
 
 	void setUpGun(sf::RenderWindow * window, int positionleft , int positiontop ,
 		sf::Vector2f playersize ,sf::Color col = sf::Color::Yellow,
-		sf::Vector2f size = sf::Vector2f(5, 110));
+		sf::Vector2f size = sf::Vector2f(4,100));
 
 	void update(sf::Vector2f positon, float rotaion, sf::Vector2f unitvect);
 	void render();

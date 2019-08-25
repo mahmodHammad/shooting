@@ -6,8 +6,11 @@ class Entity
 private:
 	enum keys { top, left, right, down, esc, enter, lclick, rclick };
 	InputHandler keyhandler;
-	Player mplayer;
-	Player aplayer;
+	Player *mplayer;
+	Player * aplayer;
+	Player * fplayer;
+	Player * gplayer;
+	std::vector<Player * > players;
 	sf::RenderWindow *Window;
 	//sf::RectangleShape mplayer;
 	//sf::Vector2f playerSize;
@@ -30,11 +33,11 @@ private:
 	bool reload;
 	void shoot();
 	void reset();
-
-	void colide(int i);
-	void colitionDetection(Player player);
+	void restart();
+	void colide(int i, Player* plyer );
+	void colitionDetection(Player* player);
 	void init();
-	
+	void gameover();
 
 public:
 	void setRenderWindow(sf::RenderWindow *window);

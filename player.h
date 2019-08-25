@@ -4,17 +4,20 @@ class Player
 {
 private:
 	sf::RectangleShape mplayer;
-	sf::RenderWindow *window;
+	sf::RenderWindow *Window;
 
 	sf::Vector2f playerSize;
 	float speed;
 	sf::Color defaultCOL;
 	sf::Vector2f initialPostion;
 	sf::Vector2f playerCenter;
-	sf::Vector2f GunHolePosition;
-
+	//std::vector<sf::Vector2f> GetGunHolePosition();
+	std::vector < sf::Vector2f>gunposs;
 
 	Gun mygun;
+	Gun aygun;
+	Gun sygun;
+	std::vector<Gun> guns;
 	sf::Vector2f mousePosition;
 	sf::Vector2f unitV;
 	float dy;
@@ -22,7 +25,6 @@ private:
 	float rotation;
 
 	int hits;
-	void init();
 	void updateAngle();
 
 
@@ -30,12 +32,12 @@ public:
 	Player();
 	Player(sf::RenderWindow *window, sf::Vector2f inposition, sf::Vector2f size
 		,sf::Color Defcolr=sf::Color::Red ,float speed=.3);
-	~Player();
+//	~Player();
+	int  getHits();
 	sf::Vector2f GetPosition();
 	sf::Vector2f GetSize();
 	sf::Vector2f GetDirection();
-	sf::Vector2f GetGunHolePosition();
-	void setupPlayer(sf::RenderWindow *window, sf::Vector2f initialPosition);
+	std::vector<sf::Vector2f> GetGunHolePosition();
 	void hit();
 	void reset();
 	void Move(int x, int y);

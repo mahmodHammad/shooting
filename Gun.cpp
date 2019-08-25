@@ -43,10 +43,10 @@ Gun::Gun()
 {}
 
 //-------------------------------------------------------------------------------------------
-
-Gun::~Gun()
-{
-}
+//
+//Gun::~Gun()
+//{
+//}
 
 
 
@@ -81,3 +81,4 @@ sf::Vector2f Gun::getGunPos()
 	temp.y = myGun.getPosition().y - unitVector.y*myGun.getLocalBounds().height;
 	return temp;
 }
+
