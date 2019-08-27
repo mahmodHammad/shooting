@@ -12,24 +12,7 @@ private:
 	Player * gplayer;
 	std::vector<Player * > players;
 	sf::RenderWindow *Window;
-	//sf::RectangleShape mplayer;
-	//sf::Vector2f playerSize;
-	//float speed; 
-	//sf::Color defaultCOL;
-	//sf::Vector2f initialPostion;
-	//sf::Vector2f playerCenter;
-
-
-	//sf::Vector2f mousePosition;
-	//sf::Vector2f unitV;
-	//
-	//float dy;
-	//float dx;
-	//float rotation;
-	//
-
 	std::vector<Projectile* > projs;
-
 	bool reload;
 	void shoot();
 	void reset();

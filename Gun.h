@@ -25,7 +25,6 @@ private:
 public:
 	Gun();
 	//~Gun();
-
 	void setUpGun(sf::RenderWindow * window, int positionleft , int positiontop ,
 		sf::Vector2f playersize ,sf::Color col = sf::Color::Yellow,
 		sf::Vector2f size = sf::Vector2f(4,100));
@@ -33,6 +32,4 @@ public:
 	void update(sf::Vector2f positon, float rotaion, sf::Vector2f unitvect);
 	void render();
 	sf::Vector2f getGunPos();
-
 };
-

@@ -15,7 +15,6 @@ void InputHandler::initializer()
 InputHandler::InputHandler()
 {
 }
-
 void InputHandler::updateinput()
 {
 	initializer();

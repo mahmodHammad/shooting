@@ -3,18 +3,15 @@
 void Entity::setRenderWindow(sf::RenderWindow* window)
 {
 	Window = window;
-	mplayer= new Player(window, sf::Vector2f(400, 400), sf::Vector2f(100, 50), sf::Color::Blue,12);
-	aplayer = new Player(window, sf::Vector2f(200, 600), sf::Vector2f(60, 60), sf::Color::Magenta,5);
-	gplayer = new Player(window, sf::Vector2f(800, 600), sf::Vector2f(20, 160), sf::Color::Red,6);
-	fplayer = new Player(window, sf::Vector2f(200, 000), sf::Vector2f(40, 120), sf::Color::White,3);
+	mplayer= new Player(window, sf::Vector2f(400, 400), sf::Vector2f(100, 50), sf::Color::Blue,12 ,9);
+	aplayer = new Player(window, sf::Vector2f(200, 600), sf::Vector2f(60, 60), sf::Color::Magenta,5,8);
+	gplayer = new Player(window, sf::Vector2f(800, 600), sf::Vector2f(20, 160), sf::Color::Red,6,3);
+	fplayer = new Player(window, sf::Vector2f(200, 000), sf::Vector2f(60, 20), sf::Color::White,9,6);
 	restart();
 }
 
 void Entity::init()
-{
-	
-}
-
+{}
 void Entity::gameover()
 {
 	players[0]->update();
@@ -33,7 +30,6 @@ void Entity::restart()
 	players.push_back(gplayer);	
 	reset();
 }
-
 
 void Entity::inputHandler()
 {
@@ -86,7 +82,6 @@ Entity::Entity()
 	init();
 }
 
-
 void Entity::reset()
 {
 	for (size_t i= 0; i <projs.size(); i++)
@@ -101,7 +96,7 @@ void Entity::reset()
 void Entity::shoot()
 {
 	for (size_t i = 0; i < players.size(); i++) {
-		for (size_t j = 0; j < 3; j++) {
+		for (size_t j = 0 ; j <players[i]->GetGunNum() ; j++) {
 			sf::Vector2f hole = players[i]->GetGunHolePosition()[j];
 			projs.push_back(new Projectile(this->Window, players[i]->GetDirection(),hole ));		
 		}
@@ -169,4 +164,3 @@ void Entity::render()
 		projs[i]->render();
 	}
 }
-

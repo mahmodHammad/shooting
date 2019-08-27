@@ -1,17 +1,21 @@
 #include "Player.h"
 
 Player::Player(sf::RenderWindow * window, sf::Vector2f inposition,
-	sf::Vector2f size, sf::Color Defcolr, float speed)
-	:Window(window), initialPostion(inposition), playerSize(size), defaultCOL(Defcolr), speed(speed)
+	sf::Vector2f size, sf::Color Defcolr, float speed , int NubGuns )
+	:Window(window), initialPostion(inposition), playerSize(size), 
+	defaultCOL(Defcolr), speed(speed),NumGuns(NubGuns)
 {
-	mygun.setUpGun(Window, 1, 2, playerSize);
-	aygun.setUpGun(Window, 1, 0, playerSize);
-	sygun.setUpGun(Window, 1, 1,playerSize);
-	guns.push_back(mygun);
-	guns.push_back(aygun);
-	guns.push_back(sygun);
+		size_t jj=0;
+		size_t j =0;
+	for (size_t i = 0; i < NumGuns; i++)
+	{
+		mygun.setUpGun(Window, j, jj, playerSize);
+		guns.push_back(mygun);
+		jj < 2 ? jj++ : jj = 0;
+		if (jj == 0)j++;
+//		std::cout << jj << " j :" << j << std::endl;
+	}
 		reset();
-		
 }
 
 void Player::hit()
@@ -41,14 +45,12 @@ void Player::reset()
 	mplayer.setPosition(initialPostion);
 	mplayer.setSize(playerSize);
 	hits = 0;
-
 }
 
 void Player::Move(int x, int y)
 {
 	mplayer.move(x*speed, y*speed);
 }
-
 
 void Player::updatevectors()
 {
@@ -57,7 +59,6 @@ void Player::updatevectors()
 	unitV = sf::Vector2f(-dx / sqrt((dx*dx) + (dy*dy)), dy / sqrt((dx*dx) + (dy*dy)));
 	playerCenter = sf::Vector2f(mplayer.getPosition().x + mplayer.getSize().x / 2, mplayer.getPosition().y + mplayer.getSize().y / 2);
 }
-
 
 void Player::updateAngle()
 {
@@ -79,7 +80,6 @@ int Player::getHits()
 	return hits;
 }
 
-
 sf::Vector2f Player::GetPosition()
 {
 	return mplayer.getPosition();
@@ -100,6 +100,11 @@ std::vector<sf::Vector2f> Player::GetGunHolePosition()
 	return gunposs;
 }
 
+int Player::GetGunNum()
+{
+	return this->guns.size();
+}
+
 void Player::update()
 {
 	mousePosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(*Window));
@@ -110,7 +115,6 @@ void Player::update()
 		guns[i].update(playerCenter, rotation, this->unitV);
 		gunposs .push_back(guns[i].getGunPos());//what the hell
 	}
-
 }
 
 void Player::render()

@@ -18,10 +18,7 @@ public:
 	~Projectile();
 	void init();
 	sf::Vector2f getBallCenter();
-	
 	void update();
 	void afterFire();
-
 	void render();
 };
-

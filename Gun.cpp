@@ -1,6 +1,5 @@
 #include "Gun.h"
 
-
 //inttialization ---------------------------------------------------------------------------
 void Gun::setUpGun(sf::RenderWindow * window, int positionleft, int positiontop,
 	sf::Vector2f playersize, sf::Color col,
@@ -43,13 +42,7 @@ Gun::Gun()
 {}
 
 //-------------------------------------------------------------------------------------------
-//
-//Gun::~Gun()
-//{
-//}
-
-
-
+//Gun::~Gun(){}
 void Gun::update(sf::Vector2f positon, float rotaion, sf::Vector2f unitvect)
 {
 	this->rotaion = rotaion;
@@ -81,4 +74,3 @@ sf::Vector2f Gun::getGunPos()
 	temp.y = myGun.getPosition().y - unitVector.y*myGun.getLocalBounds().height;
 	return temp;
 }
-

@@ -8,7 +8,6 @@ void game::init()
 	window->setMouseCursorVisible(true);
 //	window->setKeyRepeatEnabled(false);
 	entity.setRenderWindow(window);
-
 }
 
 void game::updateSFMLevents()
@@ -34,12 +33,10 @@ game::game()
 	init();
 }
 
-
 game::~game()
 {
 	delete window;
 }
-
 
 void game::update()
 {
@@ -53,7 +50,5 @@ void game::render()
 {
 	window->clear();
 	entity.render();
-
 	window->display();
 }
-
